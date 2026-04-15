@@ -1,0 +1,67 @@
+# Gradle
+.gradle/
+build/
+*.gradle.kts.bak
+.gradle
+
+# Android
+.android/
+local.properties
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*~
+.DS_Store
+
+# iOS
+Pods/
+Podfile.lock
+*.xcworkspace/
+*.xcodeproj/xcuserdata/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Kotlin
+*.kt.bak
+*.kexe
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE
+.vscode/
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Node (if using npm/yarn)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Misc
+*.log
+*.swp
+*.swo
+*~
+.env
+.env.local
+.env.*.local
