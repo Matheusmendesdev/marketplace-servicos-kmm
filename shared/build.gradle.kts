@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinSerialization)
 }
 
@@ -26,6 +25,8 @@ kotlin {
         }
     }
 
+    applyDefaultHierarchyTemplate()
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -36,19 +37,25 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.viewmodel)
-                implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation(libs.androidx.appcompat)
                 implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val iosMain by getting {
             dependencies {
+                implementation(libs.ktor.client.darwin)
             }
         }
     }

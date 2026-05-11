@@ -26,6 +26,11 @@ fun ServicesScreen(
 ) {
     val services by viewModel.services.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
+    val errorMessage by viewModel.errorMessage.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.loadServices()
+    }
 
     Column(
         modifier = Modifier
@@ -41,14 +46,7 @@ fun ServicesScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = "MEUS SERVIÇOS",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = ConectaColors.Primary,
-                letterSpacing = 1.sp
-            )
-            Text(
-                text = "Serviços Cadastrados",
+                text = "Meus Serviços Cadastrados",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = ConectaColors.Foreground
@@ -58,6 +56,35 @@ fun ServicesScreen(
                 fontSize = 14.sp,
                 color = ConectaColors.ForegroundSecondary
             )
+        }
+
+        errorMessage?.let { error ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp, vertical = 8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFFFFEBEE)
+                ),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = error,
+                            color = Color(0xFFC62828),
+                            fontSize = 14.sp
+                        )
+                    }
+                    TextButton(onClick = { viewModel.loadServices() }) {
+                        Text("TENTAR NOVAMENTE", fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
         }
 
         // Services List

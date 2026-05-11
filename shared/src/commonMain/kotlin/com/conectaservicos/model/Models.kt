@@ -1,5 +1,6 @@
 package com.conectaservicos.model
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -78,4 +79,16 @@ data class User(
     val email: String,
     val password: String,
     val profile: ProfessionalProfile
+)
+
+@Serializable
+data class Login(
+    val email: String,
+    val password: String
+)
+
+@Serializable
+data class LoginResponse(
+    val token: String? = null,
+    val id: String? = null
 )

@@ -1,6 +1,8 @@
 package com.conectaservicos.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,8 +27,8 @@ fun LoginScreen(
     viewModel: AuthViewModel,
     onLoginSuccess: () -> Unit
 ) {
-    var email by remember { mutableStateOf("profissional@servico.com") }
-    var password by remember { mutableStateOf("senha123") }
+    var email by remember { mutableStateOf("joao@email.com") }
+    var password by remember { mutableStateOf("123456") }
 
     val isLoading by viewModel.isLoading.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
@@ -204,14 +206,4 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth()
         )
     }
-}
-
-@Composable
-fun BorderStroke(width: androidx.compose.ui.unit.Dp, color: Color): BorderStroke {
-    return BorderStroke(width, color)
-}
-
-@Composable
-fun Modifier.border(width: androidx.compose.ui.unit.Dp, color: Color, shape: RoundedCornerShape): Modifier {
-    return this.border(width, color, shape)
 }

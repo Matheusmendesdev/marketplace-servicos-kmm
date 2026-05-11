@@ -1,8 +1,7 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.compose.compiler)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.compose")
 }
 
 android {
@@ -22,7 +21,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.plugin.get()
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
 
     packaging {
@@ -41,6 +40,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 dependencies {
@@ -52,4 +55,6 @@ dependencies {
     implementation(compose.foundation)
     implementation(compose.material3)
     implementation(compose.runtime)
+    implementation(compose.preview)
+    debugImplementation(compose.uiTooling)
 }
